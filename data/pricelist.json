@@ -1,0 +1,26 @@
+{
+  "currency": "IDR",
+  "updated": "2026-05-12",
+  "items": [
+    { "sku": "AI-STRAT",    "name": "AI Strategy Consultation",                          "unit": "engagement", "price": 25000000 },
+    { "sku": "AI-READY",    "name": "AI Readiness Assessment",                           "unit": "package",    "price": 15000000 },
+    { "sku": "AI-ROADMAP",  "name": "AI Transformation Roadmap (90 days)",               "unit": "package",    "price": 35000000 },
+    { "sku": "AI-AUDIT",    "name": "AI Performance & Compliance Audit",                 "unit": "package",    "price": 18000000 },
+
+    { "sku": "LLM-DEV",     "name": "Custom LLM Application Development",                "unit": "project",    "price": 120000000 },
+    { "sku": "AI-AGENT",    "name": "AI Agent Development (single use case)",            "unit": "project",    "price": 65000000 },
+    { "sku": "AI-AGENT-MULTI","name": "Multi-Agent System Development",                  "unit": "project",    "price": 180000000 },
+    { "sku": "RAG-IMPL",    "name": "RAG / Knowledge Base Implementation",               "unit": "project",    "price": 55000000 },
+    { "sku": "AI-AUTO",     "name": "AI Workflow Automation",                            "unit": "project",    "price": 45000000 },
+    { "sku": "AI-INTEG",    "name": "AI Integration into Existing Systems",              "unit": "project",    "price": 40000000 },
+
+    { "sku": "ML-MODEL",    "name": "Custom ML Model Training & Deployment",             "unit": "project",    "price": 85000000 },
+    { "sku": "DATA-PIPE",   "name": "Data Pipeline & MLOps Setup",                       "unit": "project",    "price": 50000000 },
+    { "sku": "VECTOR-DB",   "name": "Vector Database Setup & Optimization",              "unit": "package",    "price": 22000000 },
+
+    { "sku": "AI-TRAIN",    "name": "AI Training Workshop for Team",                     "unit": "day",        "price": 8500000 },
+    { "sku": "AI-ENABLE",   "name": "AI Enablement Program (4 weeks)",                   "unit": "program",    "price": 48000000 },
+    { "sku": "AI-SUPPORT",  "name": "AI Support & Optimization (retainer)",              "unit": "month",      "price": 12000000 },
+    { "sku": "AI-MONITOR",  "name": "AI Observability & Monitoring Setup",               "unit": "package",    "price": 28000000 }
+  ]
+}

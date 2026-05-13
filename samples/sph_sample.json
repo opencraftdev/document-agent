@@ -1,0 +1,59 @@
+{
+  "doc_number": "SAMPLE/SPH-OC/2026",
+  "city": "Bandung",
+  "date": "12 Mei 2026",
+  "lampiran": "3 (tiga) lembar",
+  "subject": "Penawaran Harga Jasa AI Automation & Knowledge Base",
+  "subject_short": "AI Automation & Knowledge Base Implementation",
+  "recipient": {
+    "name": "Bapak Reza Hidayat",
+    "org": "Pihak PT Karya Inovasi Indonesia",
+    "location": "Di Tempat"
+  },
+  "tables": [
+    {
+      "title": "Tabel Harga (Solusi 1)",
+      "rows": [
+        { "no": 1, "jasa": "AI Workflow Automation", "keterangan": "Otomasi triage tiket dan klasifikasi intent berbasis LLM, terintegrasi dengan kanal komunikasi internal.", "harga": "Rp 45.000.000" },
+        { "no": 2, "jasa": "Telegram Integration", "keterangan": "Integrasi notifikasi dan command bot Telegram untuk monitoring workflow.", "harga": "Rp 7.500.000" },
+        { "no": 3, "jasa": "Infrastruktur Server", "keterangan": "Railway (https://railway.com) Hobby Plan — $5/bulan untuk 1 tahun", "ket_extra": "(termasuk pajak)", "harga": "Rp 1.160.000" }
+      ],
+      "total": "Rp 53.660.000"
+    },
+    {
+      "title": "Tabel Harga (Solusi 2)",
+      "rows": [
+        { "no": 1, "jasa": "AI Workflow Automation + Telegram Integration", "keterangan": "Bundle automation + notifikasi Telegram terintegrasi penuh.", "harga": "Rp 50.000.000" },
+        { "no": 2, "jasa": "RAG / Knowledge Base Implementation", "keterangan": "Ingestion dokumen internal, embedding, vector DB, dan retrieval API.", "ket_extra": "(Harga dapat berubah berdasarkan volume data)", "harga": "Rp 55.000.000" },
+        { "no": 3, "jasa": "Infrastruktur Server", "keterangan": "KVM4 (https://hostinger.com) — 4 vCPU, 16GB RAM, 200GB NVMe, 16TB bandwidth, 1 tahun.", "harga": "Rp 3.262.068" }
+      ],
+      "total": "Rp 108.262.068"
+    },
+    {
+      "title": "Tabel Harga (Solusi 3)",
+      "rows": [
+        { "no": 1, "jasa": "AI Workflow Automation + Telegram Integration", "keterangan": "Bundle automation + notifikasi Telegram terintegrasi penuh.", "harga": "Rp 50.000.000" },
+        { "no": 2, "jasa": "RAG / Knowledge Base Implementation", "keterangan": "Ingestion dokumen internal, embedding, vector DB, dan retrieval API.", "harga": "Rp 55.000.000" },
+        { "no": 3, "jasa": "AI Agent (Customer Support)", "keterangan": "AI Agent end-to-end untuk customer support: intent recognition, RAG-backed answers, escalation handler.", "ket_extra": "(Harga dapat berubah berdasarkan kompleksitas)", "harga": "Rp 65.000.000" },
+        { "no": 4, "jasa": "Infrastruktur Server", "keterangan": "KVM4 (https://hostinger.com) — 4 vCPU, 16GB RAM, 200GB NVMe, 16TB bandwidth, 1 tahun.", "harga": "Rp 3.262.068" }
+      ],
+      "total": "Rp 173.262.068"
+    },
+    {
+      "title": "Tabel Harga Optional/Addon",
+      "optional": true,
+      "rows": [
+        { "no": 1, "jasa": "AI Observability & Monitoring", "optional": true, "keterangan": "Setup dashboard untuk monitoring kualitas response, hallucination rate, dan biaya LLM API.", "harga": "Rp 28.000.000" },
+        { "no": 2, "jasa": "AI Training Workshop", "optional": true, "keterangan": "Workshop AI literacy & prompt engineering untuk tim internal, 2 hari.", "harga": "Rp 17.000.000" }
+      ]
+    },
+    {
+      "title": "Tabel Harga Maintenance",
+      "optional": true,
+      "rows": [
+        { "no": 1, "jasa": "Solusi 1", "keterangan": "Maintenance untuk Solusi 1 per-bulan, mencakup integrasi dasar, penanganan error (retry logic), dokumentasi teknis (SOP), dan Security.", "harga": "Rp 4.000.000" },
+        { "no": 2, "jasa": "Solusi 2 & 3", "keterangan": "Maintenance untuk Solusi 2 & 3 per-bulan, mencakup integrasi dasar, penanganan error (retry logic), dokumentasi teknis (SOP), Security, serta evaluation harness untuk LLM.", "harga": "Rp 8.000.000" }
+      ]
+    }
+  ]
+}

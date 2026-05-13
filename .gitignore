@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Node / Bun
+node_modules/
+*.tsbuildinfo
+.bun/
+
+# Keep tmp dir but ignore its contents (per-doc intermediate data is throwaway)
+tmp/*
+!tmp/.gitkeep

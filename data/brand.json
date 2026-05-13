@@ -1,0 +1,14 @@
+{
+  "name": "OpenCraft",
+  "tagline": "AI Transformation Company",
+  "ceo": "Muhammad Rayandika",
+  "ceo_title": "CEO",
+  "location": "Bandung, Kinanti 1A",
+  "city": "Bandung",
+  "logo": "brand/logo.svg",
+  "contact": {
+    "email": "opencraft.dev@gmail.com",
+    "phone": "(+62) 851 5641 3628",
+    "website": "opencraft-landing.netlify.app"
+  }
+}

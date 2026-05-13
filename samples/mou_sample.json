@@ -1,0 +1,42 @@
+{
+  "doc_number": "SAMPLE/MOU-OC/2026",
+  "client": {
+    "org": "PT Raga Sehat Sejahtera",
+    "name": "Putra Tanpia Anggara",
+    "title": "CEO PT Raga Sehat Sejahtera"
+  },
+  "package": "Opsi 1",
+  "duration": "120 hari / 4 Bulan",
+  "milestones": [
+    {
+      "title": "Milestone 1",
+      "percent_text": "25% (dua puluh lima persen)",
+      "trigger": "setelah sign contract",
+      "items": [
+        "Authentication",
+        "Banner",
+        "Landing Pages",
+        "User Management",
+        "Banner Management"
+      ]
+    },
+    {
+      "title": "Milestone 2",
+      "percent_text": "50% (lima puluh persen)",
+      "trigger": "50% pekerjaan",
+      "items": [
+        "List Reservations",
+        "Reservations",
+        "Reservations Management",
+        "Report and Analytics",
+        "Payment Management",
+        "Barcode Scanner"
+      ]
+    },
+    {
+      "title": "Pembayaran Akhir",
+      "percent_text": "25% (dua puluh lima persen)",
+      "trigger": "UAT (User Acceptance Test)"
+    }
+  ]
+}
