@@ -1,0 +1,208 @@
+{
+  "$schema": "Brand guidelines for OpenCraft document-agent. Single source of design truth for all generated SPH/MoU/Deck output. Aligned to https://opencraft-landing.netlify.app (extracted 2026-05-13).",
+  "version": "2.0",
+  "updated": "2026-05-13",
+  "source": "https://opencraft-landing.netlify.app",
+
+  "company": {
+    "name": "OpenCraft",
+    "tagline": "AI Transformation Company",
+    "hero": "Future-Proof Operations with AI Transformation",
+    "positioning": "Senior-led AI transformation for teams that need strategy, workflow design, and operational rollout to move as one system.",
+    "value_props": [
+      "Design, deploy, and scale intelligent models that automate complex workflows",
+      "Modernize technical infrastructure natively",
+      "90% Automation · 10x Faster ROI"
+    ],
+    "tech_stack": ["LangGraph", "RAG Systems", "LangChain", "OpenAI", "Predictive Models", "Workflow Automation"]
+  },
+
+  "voice": {
+    "language": "Bahasa Indonesia (documents) / English (web)",
+    "tone": "Profesional, percaya diri, senior-led. Hindari pemasaran berlebihan; tunjukkan keahlian melalui spesifik.",
+    "currency_format": "Rp 1.234.567 (Indonesian style)",
+    "do": [
+      "Gunakan istilah AI Consulting, IT Consulting, AI Transformation",
+      "Sebut tech stack spesifik (LangGraph, RAG, LangChain) bila relevan",
+      "Selalu pakai 'Bapak/Ibu' di salam profesional",
+      "Cantumkan PIC (Person in Charge) untuk semua engagement"
+    ],
+    "dont": [
+      "Sebut 'OpenCraft Digital Studio' — namanya cukup 'OpenCraft'",
+      "Pakai bahasa pemasaran (revolutionary, game-changing, dll.)",
+      "Janjikan deliverable yang belum di-scope",
+      "Pakai bahasa kasual / slang dalam dokumen resmi"
+    ]
+  },
+
+  "colors": {
+    "primary":       { "value": "#2563EB", "name": "Brand Blue",          "tailwind": "blue-600",  "usage": "CTAs, section headings, table headers, accent borders, party-box left border, key brand accent" },
+    "primaryDark":   { "value": "#1E4FCC", "name": "Brand Blue Dark",     "usage": "Hover state, deeper emphasis" },
+    "primaryLight":  { "value": "#4E72EB", "name": "Brand Blue Light",    "usage": "Subtle highlights, link hover" },
+    "primarySoft":   { "value": "#84A1FF", "name": "Brand Blue Soft",     "usage": "Gradient pair, decorative" },
+
+    "accent":        { "value": "#10A37F", "name": "AI Green",            "usage": "AI/automation emphasis, success states, secondary highlights" },
+    "accentSoft":    { "value": "#E8F7F1", "name": "AI Green Soft",       "usage": "Light fill behind green text/pills" },
+
+    "ink":           { "value": "#141B2E", "name": "Ink (Heading Dark)",  "usage": "Headlines, h1/h2 in light surfaces" },
+    "text":          { "value": "#141B2E", "name": "Body Text" },
+    "textMuted":     { "value": "#6E7990", "name": "Muted Text",          "tailwind": "slate-500", "usage": "Labels, captions, secondary info, dates" },
+    "textFaint":     { "value": "#B7BFCC", "name": "Faint Text",          "tailwind": "slate-400", "usage": "Footer text, legal copy" },
+    "textHeading":   { "value": "#0F1422", "name": "Heading Ink Deep" },
+
+    "bg":            { "value": "#FFFFFF", "name": "Page Background" },
+    "bgSubtle":      { "value": "#F8F9FA", "name": "Subtle Block BG",     "usage": "Party boxes, milestone cards" },
+    "bgPackage":     { "value": "#F5F7FB", "name": "Package BG",          "usage": "Paket-yang-dipilih card, footer band" },
+    "bgInverted":    { "value": "#141B2E", "name": "Inverted BG",         "usage": "Closing slide background, hero negative space" },
+
+    "border":        { "value": "#D9DCE2", "name": "Light Border",        "tailwind": "slate-200" },
+    "borderLight":   { "value": "#E5E7EB", "name": "Footer Divider" },
+    "borderMid":     { "value": "#C8CFD9", "name": "Table Border" },
+
+    "optional":      { "value": "#C1272D", "name": "Red Optional Tag",    "usage": "(Optional) inline labels on tables/rows" }
+  },
+
+  "typography": {
+    "web_font":  "Plus Jakarta Sans (fallback: Inter, ui-sans-serif, system-ui, sans-serif)",
+    "pdf_font":  "Helvetica (react-pdf built-in; can be upgraded via Font.register('Plus Jakarta Sans', ttfUrl))",
+    "ppt_font":  "Calibri (closest cross-platform match to Plus Jakarta Sans available natively in PowerPoint)",
+    "weights": {
+      "regular":  400,
+      "medium":   500,
+      "semibold": 600,
+      "bold":     700
+    },
+    "scale_pt": {
+      "xs":   7.5,
+      "sm":   9,
+      "base": 10.5,
+      "md":   11,
+      "lg":   12,
+      "xl":   14,
+      "h2":   16,
+      "h1":   22,
+      "hero": 60
+    },
+    "tracking": {
+      "tighter": "-0.05em",
+      "tight":   "-0.025em",
+      "normal":  "0",
+      "wide":    "0.025em",
+      "looser":  "0.15em — uppercase eyebrows / kicker text"
+    },
+    "line_height": {
+      "tight":   1.1,
+      "snug":    1.375,
+      "normal":  1.5,
+      "relaxed": 1.625
+    }
+  },
+
+  "logo": {
+    "primary":      "brand/logo.png",
+    "fallback_svg": "brand/logo.svg",
+    "min_height_pt": 32,
+    "clear_space":  "Minimum 24pt on all sides — never crowd",
+    "placement": {
+      "sph":          "Centered, height 60pt at top of first page",
+      "mou":          "Centered, height 60pt at top of first page",
+      "deck_cover":   "Top-left, ~1.2in on a 13.33in slide",
+      "deck_closing": "Bottom-right, ~1.0in"
+    },
+    "dont": [
+      "Don't recolor — always use the original file",
+      "Don't stretch — keep aspect ratio",
+      "Don't place on non-white background without contrast test"
+    ]
+  },
+
+  "layout": {
+    "documents_a4": {
+      "page_size":    "A4 (210 × 297 mm)",
+      "padding_pt":   { "top": 40, "right": 50, "bottom": 90, "left": 50 },
+      "footer_fixed": true,
+      "footer_height_pt": 56
+    },
+    "deck_169": {
+      "slide_size":  "16:9 widescreen (13.333 × 7.5 in — LAYOUT_WIDE)",
+      "padding_in":  { "top": 0.4, "right": 0.5, "bottom": 0.4, "left": 0.5 },
+      "accent_bar":  "0.18in tall brand-blue bar across top of every slide"
+    }
+  },
+
+  "page_break_rules": {
+    "headings": "Always use H2 helper with minPresenceAhead={90} so section titles don't get orphaned",
+    "tables":   "Wrap each table (and its title) in <View wrap={false}>",
+    "milestones": "<View wrap={false}> on each milestone card",
+    "signatures": "<View wrap={false}> on the signature block — never split signer name from line"
+  },
+
+  "documents": {
+    "sph": {
+      "type":       "Surat Pengajuan Harga",
+      "format":     "Indonesian formal business letter",
+      "doc_number": "NNN/SPH-OC/YYYY",
+      "structure": [
+        "Logo bar (centered)",
+        "Date line (right-aligned, format: 'City, D Month YYYY' in Bahasa)",
+        "Letter meta block (No / Lampiran / Hal)",
+        "Recipient (Yth. ... / Pihak ... / Di Tempat)",
+        "3 body paragraphs (OpenCraft intro, services, project pitch)",
+        "Price tables: Solusi 1/2/3 + Optional/Addon + Maintenance",
+        "Closing paragraph + signature (CEO)",
+        "Fixed page footer"
+      ],
+      "table_style": {
+        "header_bg":    "primary (#2563EB) with white text",
+        "row_border":   "borderMid (#C8CFD9)",
+        "total_bg":     "bgPackage (#F5F7FB) with bold text",
+        "optional_tag": "italic red (#C1272D)",
+        "ket_style":    "italic, textMuted, 9.5pt"
+      }
+    },
+    "mou": {
+      "type":       "Memorandum of Understanding",
+      "format":     "Indonesian legal memorandum",
+      "doc_number": "NNN/MOU-OC/YYYY",
+      "structure": [
+        "Logo bar (centered)",
+        "Title (MoU + 'MEMORANDUM OF UNDERSTANDING' subtitle)",
+        "Party blocks: PIHAK VENDOR + PIHAK KLIEN (boxed, left primary border)",
+        "Paket yang dipilih table",
+        "Acknowledgment paragraph",
+        "Numbered Poin sections (Kesepakatan, Pembayaran, SOW General/UI-X/Dev)",
+        "Closing + dual signature block",
+        "Fixed page footer"
+      ],
+      "party_box_style": {
+        "bg":            "bgSubtle (#F8F9FA)",
+        "border_left":   "3pt solid primary (#2563EB)",
+        "role_color":    "primary, uppercase, bold, 0.5 letter-spacing"
+      }
+    },
+    "deck": {
+      "type":       "Pitch / Proposal Deck (PowerPoint)",
+      "format":     "16:9 widescreen (.pptx, 13.333×7.5in)",
+      "structure_minimum": ["Cover slide", "Content slides", "Closing slide"],
+      "cover_slide": {
+        "background":   "white with primary-blue accent bar at top (0.18in)",
+        "logo":         "top-left, ~1.2in",
+        "tagline":      "next to logo, uppercase, charSpacing 4, textMuted",
+        "title":        "left-aligned, bold, 44pt, ink color",
+        "subtitle":     "below title, 20pt, textMuted",
+        "rule":         "0.6in × 0.08in accent-blue rule between title and meta",
+        "client_block": "'DISIAPKAN UNTUK' (eyebrow) + client name (18pt bold), bottom-left",
+        "date":         "'DATE' (eyebrow) + date (16pt), bottom-right"
+      },
+      "closing_slide": {
+        "background":  "ink/inverted (#141B2E)",
+        "headline":    "'Terima Kasih' (or 'Mari Berkolaborasi') — 60pt bold white, centered",
+        "rule":        "0.8in × 0.08in accent-blue rule under headline",
+        "subline":     "italic, light-slate, 16pt, centered",
+        "contact":     "email · phone · website — white 13pt centered",
+        "logo":        "bottom-right at ~1.0in",
+        "footer_bar":  "primary-blue 0.18in bar at bottom"
+      }
+    }
+  }
+}

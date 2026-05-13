@@ -1,19 +1,43 @@
+/**
+ * Brand theme — keep in sync with data/brand-guidelines.json
+ * (the JSON is the canonical spec; this file is its TypeScript runtime mirror).
+ *
+ * Palette derived from opencraft-landing.netlify.app (Tailwind blue-600 +
+ * AI green + slate scale).
+ */
+
 export const colors = {
-  primary:      "#2C3E5C",
-  accent:       "#FF6B35",
-  accent2:      "#F7931E",
-  text:         "#2b2b2b",
-  textMuted:    "#555555",
-  textFaint:    "#888888",
-  textHeading:  "#111111",
-  bg:           "#ffffff",
-  bgAlt:        "#fafafa",
-  bgAccent:     "#fff5ee",
-  bgPackage:    "#f3f6fb",
-  border:       "#d4dceb",
-  borderLight:  "#cfcfcf",
-  borderMid:    "#c9c9c9",
-  optional:     "#c1272d",
+  // Brand
+  primary:      "#2563EB",   // Brand Blue (Tailwind blue-600)
+  primaryDark:  "#1E4FCC",   // Hover / deeper emphasis
+  primaryLight: "#4E72EB",   // Subtle highlights
+  primarySoft:  "#84A1FF",   // Decorative gradient pair
+
+  accent:       "#10A37F",   // AI Green — automation/success emphasis
+  accentSoft:   "#E8F7F1",   // Light fill behind green text
+
+  // Text
+  ink:          "#141B2E",   // Headings on light surfaces
+  text:         "#141B2E",   // Body text
+  textMuted:    "#6E7990",   // Slate-500 — labels, captions
+  textFaint:    "#B7BFCC",   // Slate-400 — footer text, legal copy
+  textHeading:  "#0F1422",   // Deeper heading ink
+
+  // Backgrounds
+  bg:           "#FFFFFF",
+  bgSubtle:     "#F8F9FA",   // Party boxes, milestone cards
+  bgAlt:        "#F8F9FA",   // alias of bgSubtle for back-compat
+  bgPackage:    "#F5F7FB",   // Paket card, total row, package band
+  bgAccent:     "#EFF4FF",   // light brand-blue tint
+  bgInverted:   "#141B2E",   // Closing slide / inverted hero
+
+  // Borders
+  border:       "#D9DCE2",   // Slate-200
+  borderLight:  "#E5E7EB",   // Footer divider
+  borderMid:    "#C8CFD9",   // Table border
+
+  // Status
+  optional:     "#C1272D",   // (Optional) tags — kept red for visibility
 };
 
 export const fontSize = {
@@ -23,9 +47,14 @@ export const fontSize = {
   md:   11,
   lg:   12,
   xl:   14,
+  h2:   16,
   h1:   22,
+  hero: 60,
 };
 
+// react-pdf has Helvetica built-in. To upgrade to Plus Jakarta Sans
+// (the actual web font), register TTF via Font.register() once and swap
+// these values to "Plus Jakarta Sans" + weight variants.
 export const font = {
   regular:    "Helvetica",
   bold:       "Helvetica-Bold",

@@ -6,14 +6,17 @@ OpenCraft helps Indonesian enterprises adopt AI: strategy, custom LLM applicatio
 
 ## What you produce
 
-PDF documents in `documents/<type>/`. Two types currently supported:
+Documents in `documents/<type>/`. Three types currently supported:
 
-| Type     | Folder                | Doc number format     | Template                                          |
-|----------|-----------------------|-----------------------|---------------------------------------------------|
-| SPH      | `documents/sph/`      | `###/SPH-OC/YYYY`     | [templates/sph.tsx](templates/sph.tsx)            |
-| MoU      | `documents/mou/`      | `###/MOU-OC/YYYY`     | [templates/mou.tsx](templates/mou.tsx)            |
+| Type | Folder                | Format | Doc number          | Template                                          | Renderer                                                 |
+|------|-----------------------|--------|---------------------|---------------------------------------------------|----------------------------------------------------------|
+| SPH  | `documents/sph/`      | PDF    | `###/SPH-OC/YYYY`   | [templates/sph.tsx](templates/sph.tsx)            | `bun scripts/render.tsx sph ...`                         |
+| MoU  | `documents/mou/`      | PDF    | `###/MOU-OC/YYYY`   | [templates/mou.tsx](templates/mou.tsx)            | `bun scripts/render.tsx mou ...`                         |
+| Deck | `documents/deck/`     | PPTX   | (usually unnumbered)| [templates/deck.ts](templates/deck.ts)            | `bun scripts/render-ppt.ts ...`                          |
 
-`SPH` = Surat Pengajuan Harga (price proposal letter, Indonesian).
+`SPH` = Surat Pengajuan Harga (price proposal letter, Indonesian). Decks are 16:9 PowerPoint slides (cover + closing today; project-content slides added per engagement).
+
+**Brand reference:** [data/brand-guidelines.json](data/brand-guidelines.json) is the canonical design spec — colors, typography, logo placement, document structure, voice. Consult before adding new templates or modifying styling.
 
 ## Hard rules
 
@@ -107,6 +110,7 @@ To change company info globally, edit this file. Next render picks up the change
 - `python3 scripts/doc_number.py flat "<number>"` — slash→underscore filename helper.
 - `python3 scripts/doc_number.py record <type> "<number>" "<client>" "<subject>" "<pdf>"` — register a used number after PDF success.
 - `bun scripts/render.tsx <sph|mou> <data.json> <output.pdf>` — render PDF via react-pdf.
+- `bun scripts/render-ppt.ts <data.json> <output.pptx>` — render PowerPoint deck via pptxgenjs (cover + closing slides, brand-styled).
 
 ## Layout rules for templates (always follow when editing `.tsx`)
 
