@@ -2,6 +2,38 @@
   "title": "AI Customer Intelligence\nPlatform",
   "subtitle": "AI-powered insights untuk tim sales & customer success",
   "client": "PT Maju Bersama Teknologi",
-  "date": "13 Mei 2026",
-  "closing_headline": "Terima Kasih"
+  "date": "14 Mei 2026",
+  "closing_headline": "Terima Kasih",
+  "closing_subline": "Mari berkolaborasi untuk transformasi AI bisnis Anda.",
+
+  "slides": [
+    {
+      "kind": "section",
+      "label": "BAGIAN 01",
+      "headline": "Mengapa AI sekarang?",
+      "subhead": "Persaingan tidak lagi soal siapa yang punya data terbesar — tapi siapa yang dapat membaca, menafsirkan, dan bertindak atasnya tercepat.",
+      "watermark": "01",
+      "image_topic": "Why AI matters now — the speed-of-decision advantage that separates leaders from followers in a data-saturated market.",
+      "image_visual": "Comparison framework, two halves side by side. Left side: a slow analog pipeline rendered as a stack of disconnected document outlines flowing into a single small chart at the bottom — feels heavy and inert. Right side: a fast AI-augmented pipeline rendered as a tight neural-network node cluster radiating outward into several upward trend arrows — feels agile and accelerating. A vertical dividing line in the middle. Subtle directional arrows under each side. The right side is visually denser and more dynamic."
+    },
+    {
+      "kind": "pillars",
+      "title": "Tiga pilar transformasi AI OpenCraft",
+      "subtitle": "Mulai dari strategi, eksekusi, hingga adopsi — sebagai satu sistem.",
+      "pillars": [
+        { "num": "01", "title": "AI Strategy",     "body": "Roadmap dan prioritization dari business value, bukan dari hype." },
+        { "num": "02", "title": "Custom AI Build", "body": "Custom LLM, agent, RAG — dirancang untuk workflow Anda." },
+        { "num": "03", "title": "Enablement",      "body": "Tim internal Anda jadi mandiri — bukan ketergantungan vendor." }
+      ]
+    },
+    {
+      "kind": "section",
+      "label": "BAGIAN 02",
+      "headline": "Customer Intelligence Platform.",
+      "subhead": "Mengubah catatan percakapan, tiket, dan transaksi menjadi keputusan komersial yang aksi-nyata.",
+      "watermark": "02",
+      "image_topic": "AI Customer Intelligence Platform — turning customer interactions into actionable business insights.",
+      "image_visual": "Horizontal data-flow diagram, three stages left to right. Stage 1: input sources — a vertical cluster of three small icons (a stack of records, a chat-bubble outline, a transaction-receipt outline). Stage 2: central AI processing layer — an abstract neural-network node cluster, overlapping circles connected by thin lines, slightly larger than the other stages. Stage 3: output insights — a clean miniature bar-chart silhouette and an upward trend arrow. Subtle flowing curved arrows connect the stages, suggesting motion."
+    }
+  ]
 }

@@ -26,7 +26,7 @@ Documents in `documents/<type>/`. Three types currently supported:
 4. **Currency:** IDR (Rupiah). Format as `Rp 1.234.567` (Indonesian style: dots as thousands separator).
 5. **Language:** documents are in Bahasa Indonesia. Communicate with the user in their language.
 
-## Workflow (do this for every doc request)
+## Workflow — SPH / MoU (PDF)
 
 1. **Clarify** the type if ambiguous (SPH / MoU).
 2. **Gather** required fields. Ask for anything missing — don't make up client info.
@@ -51,6 +51,77 @@ Documents in `documents/<type>/`. Three types currently supported:
    ```
    Skip this if rendering failed.
 9. **Report** back: doc number, PDF path, total amount (for SPH).
+
+## Workflow — Deck (PPTX, two-phase: draft → polish)
+
+Decks have a **build → preview → confirm → polish → render** loop so the user reviews content cheaply before paying for image generation.
+
+1. **Gather** what the user wants the deck to communicate (audience, ask, narrative arc).
+2. **Draft data JSON** at `tmp/<deck_slug>.json` — fill `title`, `subtitle`, `client`, `date`, `closing_*`, and the `slides[]` array using the typed shapes in [templates/deck.ts](templates/deck.ts) (`SectionSlide`, `PillarsSlide`, `FeatureSlide`, `StatsSlide`, `ChartSlide`, `RoadmapSlide`). For section slides that should later carry a hero image, add an `image_prompt` field describing the visual you want.
+3. **Render the draft** (NO images yet):
+   ```bash
+   bun scripts/render-ppt.ts tmp/<deck_slug>.json documents/deck/<deck_slug>_draft.pptx
+   ```
+4. **Open** the draft, share with the user, and ask: *"Setuju kontennya? Boleh saya polish dengan AI-generated images?"*
+5. **STOP and wait for explicit confirmation.** Do not call fal.ai before the user says yes — image generation costs money.
+6. **Polish** (parallel fal.ai gpt-image-2 calls, low quality on first pass):
+   ```bash
+   python3 scripts/polish-deck.py tmp/<deck_slug>.json \
+     --out tmp/<deck_slug>.polished.json
+   ```
+   Requires `FAL_KEY` in `.env` (template at `.env.example`). The script saves one PNG per slide-with-prompt under `tmp/deck_images/slide_NN.png` and writes a new JSON with `image_path` filled in for those slides.
+7. **Re-render** the polished deck:
+   ```bash
+   bun scripts/render-ppt.ts tmp/<deck_slug>.polished.json \
+     documents/deck/<deck_slug>.pptx
+   ```
+8. **Report** back with the final pptx path.
+
+### Deck conventions
+
+**Two-mode rendering**: every content slide has two possible outputs.
+
+| Mode             | When                                  | What you see                                                  |
+|------------------|---------------------------------------|---------------------------------------------------------------|
+| **Draft / plain** | `image_path` not set on the slide    | Pure typography + tiny page chrome. No diagrams, charts, badges, tiles, decorative shapes. Cheap and fast — for content review. |
+| **Polished / full-bleed** | `image_path` set (after polish) | The AI-generated PNG IS the entire slide (text + visualization + brand mark baked in). Native rendering is suppressed for this slide. |
+
+The renderer in [templates/deck.ts](templates/deck.ts) ONLY does plain typography. **Diagrams and visualizations live exclusively in the polish step** — never add a chart, badge, or visual shape to the pptxgenjs renderer.
+
+#### Prompting gpt-image-2 — locked house style
+
+**Goal**: each polished slide is a single 16:9 PNG containing the slide's text content AND a soft-3D hero illustration, all baked in. The visual language is derived directly from `brand/logo.png` (three interlocking hands, blue-gradient triangle, single teal-green palm accent) and translated into a consistent deck aesthetic.
+
+**House style — DO NOT SOFTEN** (locked in [`scripts/polish-deck.py`](scripts/polish-deck.py) → `STYLE_BLOCK`):
+
+- **Soft 3D modern-SaaS illustration** — think Stripe / Linear / Apple-keynote marketing graphics. Rounded organic forms. Smooth gradient surfaces. Subtle ambient-occlusion / floor shadows.
+- **NOT** photorealistic. **NOT** flat-vector infographic. **NOT** hand-drawn. **NOT** a realistic 3D render with textures.
+- **Centered compositions** — text frames the hero illustration above and below. NEVER text-left / visual-right split.
+- **Brand palette only** — white background, deep navy (`#141B2E`) headlines + wordmark, electric-blue (`#2563EB`) gradient on primary shapes, light-blue (`#84A1FF`) highlights, **exactly ONE teal-green (`#10A37F`)** focal accent per slide on the most important element. Muted slate (`#6E7990`) for body copy.
+- **Editorial sans-serif typography** for headlines, large and bold.
+- **Generous whitespace** — must feel calm, airy, premium.
+- **Always present**: thin electric-blue accent bar across the very top; small "OpenCraft" wordmark in deep navy at the bottom-right corner.
+
+**Per-kind prompt builders** in [`polish-deck.py`](scripts/polish-deck.py) — each reads the slide's text fields and the `image_topic` / `image_visual` brief, then emits a full prompt with the locked `STYLE_BLOCK`:
+
+- `build_section_prompt` — eyebrow + hero headline + 3D illustration + subhead + wordmark
+- `build_pillars_prompt` — title + horizontal row of soft-3D pillar forms (podium / sphere / prism), one with green accent, numbered markers above, titles + bodies below
+- `build_feature_prompt` — eyebrow + title + lead + 3D hero illustration + bulleted list + price lines
+- `build_stats_prompt` — title + row of 3D stat tiles (rounded cards), one carrying the green accent, with floating numbers + labels + captions
+- `build_chart_prompt` — title + 3D illustrated chart (bars as soft rounded prisms, donut as glossy 3D torus, one segment in green) + takeaway
+- `build_roadmap_prompt` — title + horizontal 3D timeline of phase cards connected by a curved 3D path with glowing milestone nodes, one milestone in green
+
+**Required slide fields for polish** (any kind):
+- `image_topic` — one sentence: *what* this slide says.
+- `image_visual` — 2–4 sentences describing the visual structure (the 3D forms, their arrangement, what each represents). Don't describe color or style — `STYLE_BLOCK` handles that.
+
+**Each builder injects** the slide's text fields as a `TEXT TO RENDER` block (numbered list of exact strings) so gpt-image-2 spells everything correctly. If you change a slide's content, re-run polish — text is rasterized into the image.
+
+**Escape hatch**: set `image_prompt` to override the builder entirely (one-off non-brand style).
+
+**Quality**: `polish-deck.py` defaults to `--quality medium` for iteration. Use `--quality low` for cheap prompt design. Use `--quality high` for the final pass before client delivery (≈$0.20–0.40 per image — sharper text rendering, especially on longer subheads).
+
+**Cost tip**: every `--force` re-polish charges again. Iterate on prompts and `image_visual` briefs in JSON before re-running.
 
 ## Data shape
 
@@ -110,7 +181,8 @@ To change company info globally, edit this file. Next render picks up the change
 - `python3 scripts/doc_number.py flat "<number>"` — slash→underscore filename helper.
 - `python3 scripts/doc_number.py record <type> "<number>" "<client>" "<subject>" "<pdf>"` — register a used number after PDF success.
 - `bun scripts/render.tsx <sph|mou> <data.json> <output.pdf>` — render PDF via react-pdf.
-- `bun scripts/render-ppt.ts <data.json> <output.pptx>` — render PowerPoint deck via pptxgenjs (cover + closing slides, brand-styled).
+- `bun scripts/render-ppt.ts <data.json> <output.pptx>` — render PowerPoint deck via pptxgenjs (cover + content + closing slides, brand-styled).
+- `python3 scripts/polish-deck.py <data.json> --out <polished.json>` — polish a deck by generating slide images in parallel via fal.ai gpt-image-2 (requires `FAL_KEY` in `.env`). Always run AFTER explicit user confirmation — image generation costs money.
 
 ## Layout rules for templates (always follow when editing `.tsx`)
 
@@ -181,5 +253,6 @@ If the user wants to change company info, they edit `data/brand.json` once and e
 - Don't write to `documents/` directly — always go through the render script.
 - Don't commit anything unless the user asks.
 - Don't fall back to HTML/Chrome rendering — that approach was removed in favor of react-pdf.
+- Don't run `scripts/polish-deck.py` until the user has reviewed the draft deck AND explicitly confirmed the polish step. Generating images costs money.
 - Don't use bare `<Text style={styles.h2}>` for section headings — always go through the `H2` helper (see Layout rules §1).
 - Don't hardcode brand info in templates — use the `brand` import (see Layout rules §5).
