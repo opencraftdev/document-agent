@@ -175,22 +175,26 @@ function addContentChrome(slide: PptxGenJS.Slide, pageNum: number, totalPages: n
 function renderSection(slide: PptxGenJS.Slide, data: SectionSlide) {
   slide.background = { color: COLORS.bg };
 
+  // Eyebrow — small, centered, uppercase
   slide.addText(data.label, {
-    x: 0.6, y: 1.5, w: W - 1.2, h: 0.4,
-    fontSize: 11, fontFace: "Calibri", bold: true,
-    color: COLORS.primary, charSpacing: 5,
+    x: 0.6, y: 1.6, w: W - 1.2, h: 0.4,
+    fontSize: 12, fontFace: "Calibri", bold: true,
+    color: COLORS.primary, charSpacing: 6, align: "center",
   });
 
+  // Headline — billboard scale, centered
   slide.addText(data.headline, {
-    x: 0.6, y: 2.1, w: W - 1.2, h: 2.5,
-    fontSize: 48, fontFace: "Calibri", bold: true,
-    color: COLORS.text, valign: "top",
+    x: 0.6, y: 2.4, w: W - 1.2, h: 2.6,
+    fontSize: 64, fontFace: "Calibri", bold: true,
+    color: COLORS.text, valign: "middle", align: "center",
   });
 
+  // Subhead — short one line, centered, smaller
   if (data.subhead) {
     slide.addText(data.subhead, {
-      x: 0.6, y: 4.9, w: W - 1.2, h: 1.8,
-      fontSize: 18, fontFace: "Calibri", color: COLORS.textMuted, valign: "top",
+      x: 1.5, y: 5.3, w: W - 3.0, h: 1.2,
+      fontSize: 18, fontFace: "Calibri",
+      color: COLORS.textMuted, valign: "top", align: "center",
     });
   }
 }
@@ -199,36 +203,38 @@ function renderPillars(slide: PptxGenJS.Slide, data: PillarsSlide) {
   slide.background = { color: COLORS.bg };
 
   slide.addText(data.title, {
-    x: 0.6, y: 1.0, w: W - 1.2, h: 0.7,
-    fontSize: 30, fontFace: "Calibri", bold: true, color: COLORS.text,
+    x: 0.6, y: 1.1, w: W - 1.2, h: 0.9,
+    fontSize: 44, fontFace: "Calibri", bold: true,
+    color: COLORS.text, align: "center",
   });
   if (data.subtitle) {
     slide.addText(data.subtitle, {
-      x: 0.6, y: 1.85, w: W - 1.2, h: 0.5,
-      fontSize: 14, fontFace: "Calibri", color: COLORS.textMuted,
+      x: 1.5, y: 2.15, w: W - 3.0, h: 0.5,
+      fontSize: 16, fontFace: "Calibri",
+      color: COLORS.textMuted, align: "center",
     });
   }
 
-  const startY = 2.8;
-  const rowH   = 1.1;
+  const startY = 3.4;
+  const rowH   = 1.0;
   data.pillars.forEach((p, i) => {
     const y = startY + i * rowH;
 
     slide.addText(p.num, {
-      x: 0.6, y, w: 0.9, h: rowH,
-      fontSize: 22, fontFace: "Calibri", bold: true,
+      x: 0.8, y, w: 1.0, h: rowH,
+      fontSize: 32, fontFace: "Calibri", bold: true,
       color: COLORS.primary, valign: "top",
     });
 
     slide.addText(p.title, {
-      x: 1.6, y, w: W - 2.2, h: 0.4,
-      fontSize: 16, fontFace: "Calibri", bold: true,
+      x: 2.0, y, w: W - 2.6, h: 0.45,
+      fontSize: 20, fontFace: "Calibri", bold: true,
       color: COLORS.text, valign: "top",
     });
 
     slide.addText(p.body, {
-      x: 1.6, y: y + 0.4, w: W - 2.2, h: 0.6,
-      fontSize: 12, fontFace: "Calibri", color: COLORS.textMuted, valign: "top",
+      x: 2.0, y: y + 0.45, w: W - 2.6, h: 0.5,
+      fontSize: 13, fontFace: "Calibri", color: COLORS.textMuted, valign: "top",
     });
   });
 }
@@ -238,20 +244,22 @@ function renderFeature(slide: PptxGenJS.Slide, data: FeatureSlide) {
 
   if (data.eyebrow) {
     slide.addText(data.eyebrow, {
-      x: 0.6, y: 1.0, w: W - 1.2, h: 0.3,
-      fontSize: 10, fontFace: "Calibri", bold: true,
-      color: COLORS.primary, charSpacing: 4,
+      x: 0.6, y: 1.1, w: W - 1.2, h: 0.3,
+      fontSize: 11, fontFace: "Calibri", bold: true,
+      color: COLORS.primary, charSpacing: 5, align: "center",
     });
   }
 
   slide.addText(data.title, {
-    x: 0.6, y: 1.35, w: W - 1.2, h: 0.9,
-    fontSize: 32, fontFace: "Calibri", bold: true, color: COLORS.text,
+    x: 0.6, y: 1.55, w: W - 1.2, h: 1.0,
+    fontSize: 44, fontFace: "Calibri", bold: true,
+    color: COLORS.text, align: "center",
   });
 
   slide.addText(data.lead, {
-    x: 0.6, y: 2.3, w: W - 1.2, h: 0.7,
-    fontSize: 16, fontFace: "Calibri", color: COLORS.textMuted, italic: true,
+    x: 1.5, y: 2.7, w: W - 3.0, h: 0.6,
+    fontSize: 17, fontFace: "Calibri", color: COLORS.textMuted, italic: true,
+    align: "center",
   });
 
   const bullets = data.bullets.map(b => ({
@@ -259,9 +267,9 @@ function renderFeature(slide: PptxGenJS.Slide, data: FeatureSlide) {
     options: { bullet: { code: "25A0" } },
   }));
   slide.addText(bullets, {
-    x: 0.6, y: 3.2, w: W - 1.2, h: 2.5,
-    fontSize: 14, fontFace: "Calibri", color: COLORS.text,
-    paraSpaceAfter: 6, valign: "top",
+    x: 2.0, y: 3.7, w: W - 4.0, h: 2.5,
+    fontSize: 16, fontFace: "Calibri", color: COLORS.text,
+    paraSpaceAfter: 8, valign: "top",
   });
 
   if (data.price) {
@@ -294,44 +302,46 @@ function renderStats(slide: PptxGenJS.Slide, data: StatsSlide) {
 
   if (data.eyebrow) {
     slide.addText(data.eyebrow, {
-      x: 0.6, y: 1.0, w: W - 1.2, h: 0.3,
-      fontSize: 10, fontFace: "Calibri", bold: true,
-      color: COLORS.primary, charSpacing: 4,
+      x: 0.6, y: 1.1, w: W - 1.2, h: 0.3,
+      fontSize: 11, fontFace: "Calibri", bold: true,
+      color: COLORS.primary, charSpacing: 5, align: "center",
     });
   }
   slide.addText(data.title, {
-    x: 0.6, y: 1.35, w: W - 1.2, h: 0.9,
-    fontSize: 30, fontFace: "Calibri", bold: true, color: COLORS.text,
+    x: 0.6, y: 1.55, w: W - 1.2, h: 1.0,
+    fontSize: 44, fontFace: "Calibri", bold: true,
+    color: COLORS.text, align: "center",
   });
   if (data.subtitle) {
     slide.addText(data.subtitle, {
-      x: 0.6, y: 2.25, w: W - 1.2, h: 0.5,
-      fontSize: 14, fontFace: "Calibri", color: COLORS.textMuted,
+      x: 1.5, y: 2.7, w: W - 3.0, h: 0.5,
+      fontSize: 16, fontFace: "Calibri",
+      color: COLORS.textMuted, align: "center",
     });
   }
 
-  // Plain rows — value (big), label (bold), caption (muted)
-  const startY = 3.2;
+  // Plain rows — value (massive), label (bold), caption (muted)
+  const startY = 3.7;
   const rowH   = 0.95;
   data.stats.forEach((s, i) => {
     const y = startY + i * rowH;
 
     slide.addText(s.value, {
-      x: 0.6, y, w: 2.5, h: rowH,
-      fontSize: 30, fontFace: "Calibri", bold: true,
+      x: 0.8, y, w: 3.0, h: rowH,
+      fontSize: 44, fontFace: "Calibri", bold: true,
       color: COLORS.primary, valign: "top",
     });
 
     slide.addText(s.label, {
-      x: 3.3, y, w: W - 4.0, h: 0.4,
-      fontSize: 14, fontFace: "Calibri", bold: true,
+      x: 4.2, y: y + 0.05, w: W - 4.9, h: 0.45,
+      fontSize: 16, fontFace: "Calibri", bold: true,
       color: COLORS.text, valign: "top",
     });
 
     if (s.caption) {
       slide.addText(s.caption, {
-        x: 3.3, y: y + 0.42, w: W - 4.0, h: 0.45,
-        fontSize: 11, fontFace: "Calibri",
+        x: 4.2, y: y + 0.5, w: W - 4.9, h: 0.45,
+        fontSize: 12, fontFace: "Calibri",
         color: COLORS.textMuted, italic: true, valign: "top",
       });
     }
@@ -340,7 +350,7 @@ function renderStats(slide: PptxGenJS.Slide, data: StatsSlide) {
   if (data.takeaway) {
     slide.addText(data.takeaway, {
       x: 0.6, y: H - 1.05, w: W - 1.2, h: 0.45,
-      fontSize: 13, fontFace: "Calibri", bold: true, italic: true,
+      fontSize: 14, fontFace: "Calibri", bold: true, italic: true,
       color: COLORS.accent, align: "center",
     });
   }
@@ -351,19 +361,21 @@ function renderChart(slide: PptxGenJS.Slide, data: ChartSlide) {
 
   if (data.eyebrow) {
     slide.addText(data.eyebrow, {
-      x: 0.6, y: 1.0, w: W - 1.2, h: 0.3,
-      fontSize: 10, fontFace: "Calibri", bold: true,
-      color: COLORS.primary, charSpacing: 4,
+      x: 0.6, y: 1.1, w: W - 1.2, h: 0.3,
+      fontSize: 11, fontFace: "Calibri", bold: true,
+      color: COLORS.primary, charSpacing: 5, align: "center",
     });
   }
   slide.addText(data.title, {
-    x: 0.6, y: 1.35, w: W - 1.2, h: 0.9,
-    fontSize: 30, fontFace: "Calibri", bold: true, color: COLORS.text,
+    x: 0.6, y: 1.55, w: W - 1.2, h: 1.0,
+    fontSize: 40, fontFace: "Calibri", bold: true,
+    color: COLORS.text, align: "center",
   });
   if (data.subtitle) {
     slide.addText(data.subtitle, {
-      x: 0.6, y: 2.25, w: W - 1.2, h: 0.5,
-      fontSize: 14, fontFace: "Calibri", color: COLORS.textMuted,
+      x: 1.5, y: 2.7, w: W - 3.0, h: 0.5,
+      fontSize: 16, fontFace: "Calibri",
+      color: COLORS.textMuted, align: "center",
     });
   }
 
@@ -423,13 +435,15 @@ function renderRoadmap(slide: PptxGenJS.Slide, data: RoadmapSlide) {
   slide.background = { color: COLORS.bg };
 
   slide.addText(data.title, {
-    x: 0.6, y: 1.0, w: W - 1.2, h: 0.7,
-    fontSize: 30, fontFace: "Calibri", bold: true, color: COLORS.text,
+    x: 0.6, y: 1.1, w: W - 1.2, h: 0.9,
+    fontSize: 40, fontFace: "Calibri", bold: true,
+    color: COLORS.text, align: "center",
   });
   if (data.subtitle) {
     slide.addText(data.subtitle, {
-      x: 0.6, y: 1.85, w: W - 1.2, h: 0.5,
-      fontSize: 14, fontFace: "Calibri", color: COLORS.textMuted,
+      x: 1.5, y: 2.1, w: W - 3.0, h: 0.5,
+      fontSize: 16, fontFace: "Calibri",
+      color: COLORS.textMuted, align: "center",
     });
   }
 

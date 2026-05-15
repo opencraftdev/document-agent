@@ -79,6 +79,26 @@ Decks have a **build → preview → confirm → polish → render** loop so the
 
 ### Deck conventions
 
+#### Typography & content rules — emphasize big type, minimal text
+
+Every deck slide must follow this philosophy:
+
+- **One idea per slide.** If you can't say it in a single short sentence + one supporting line, split into two slides.
+- **Big headlines.** Section/feature/stats/chart/pillars/roadmap headlines should land like billboard copy — 60–80pt visual weight in the rendered image, never small.
+- **Hard word budgets** (the agent enforces these when authoring slide JSON):
+  - `headline` / `title` — ≤ 7 words
+  - `subhead` / `lead` / `subtitle` — ≤ 14 words, one line if possible
+  - `pillar.title` — 1–3 words
+  - `pillar.body` — ≤ 10 words
+  - `bullet` — ≤ 8 words each, max 4 bullets per slide
+  - `stat.label` — ≤ 4 words; `stat.caption` (optional) — ≤ 7 words
+  - `phase.title` — 1–3 words
+- **Cut adjectives, hedges, qualifiers.** "Innovative best-in-class scalable" becomes "scalable" — or nothing.
+- **Show, don't tell.** The hero 3D illustration carries the visual weight; text exists to anchor and direct, not to explain everything.
+- **Generous whitespace.** A slide should breathe. If it feels dense, cut text — never shrink type.
+
+These rules apply in both the **draft** (pptxgenjs typography) and **polished** (gpt-image-2 image) modes. The polish prompt builders translate them into TEXT TO RENDER blocks; if you write long copy, the polished image will look cramped no matter the quality tier.
+
 **Two-mode rendering**: every content slide has two possible outputs.
 
 | Mode             | When                                  | What you see                                                  |

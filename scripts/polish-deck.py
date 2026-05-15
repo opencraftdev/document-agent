@@ -70,7 +70,17 @@ Subtle ambient-occlusion / floor shadows for depth. Minimal and elegant — neve
 cluttered, never busy.
 - NOT photorealistic. NOT flat vector. NOT hand-drawn. NOT a literal 3D render with \
 realistic textures — keep it stylized, clean, and brand-aligned.
-- Editorial sans-serif typography for headlines (large, bold, dark navy).
+
+TYPOGRAPHY — billboard-scale, minimal text, locked:
+- Headlines render LARGE — visual weight 60–80pt equivalent. The headline must be the \
+single most prominent element on the slide after the illustration. NEVER render small \
+headlines.
+- Editorial sans-serif, bold weight, deep-navy ink, tight tracking on the headline.
+- Body copy and subheads stay short — one line each whenever possible. NEVER fill the \
+slide with paragraphs. If the supplied text is long, lay it out across two lines and \
+keep type size large; do NOT shrink type to fit more words.
+- Generous whitespace around all text — the slide should feel airy, premium, and \
+billboard-readable from across a room.
 
 PALETTE — strict, use ONLY these tones plus white for legibility:
 - Background: pure white (#FFFFFF)
@@ -87,7 +97,8 @@ LAYOUT — centered composition (NEVER text-left / visual-right split):
 - All text elements horizontally centered relative to the slide
 - The hero 3D illustration is centered horizontally and dominates the visual middle band
 - Small "OpenCraft" wordmark in deep navy at the bottom-right corner
-- Generous airy whitespace around the illustration; the deck must feel calm and premium
+- The hero headline gets PRIORITY visual weight — bigger than every other text element \
+on the slide by a clear margin
 
 GLOBAL CONSTRAINTS:
 - 16:9 aspect ratio
@@ -95,6 +106,8 @@ GLOBAL CONSTRAINTS:
 - NO flat-vector aesthetic, NO geometric infographic icons, NO line-art only — must \
 read as soft 3D illustration
 - NO logos beyond the OpenCraft wordmark, NO watermarks
+- NO paragraphs of text. NO sentences longer than the supplied strings. Render ONLY \
+the strings listed under TEXT TO RENDER and nothing else.
 """
 
 
@@ -114,14 +127,15 @@ def build_section_prompt(slide: dict) -> str:
     return f"""\
 A clean, fully-designed section-divider slide for an OpenCraft pitch deck. Aspect ratio 16:9.
 
-LAYOUT (centered):
+LAYOUT (centered, billboard-scale typography):
 - Thin electric-blue accent bar across the very top.
-- Top-center: uppercase eyebrow label in muted slate gray, generous letter-spacing.
-- Below eyebrow: large bold dark-navy headline, centered, editorial sans-serif, \
-≈64–80pt visual weight. Hero typography.
+- Top-center: small uppercase eyebrow in muted slate gray, wide letter-spacing.
+- Below eyebrow: HUGE bold dark-navy headline, centered, editorial sans-serif, \
+≈72–96pt visual weight — the dominant element of the entire slide. Hero typography. \
+NEVER smaller.
 - Middle of the slide: the soft-3D hero illustration described under VISUAL — centered, \
 dominating the visual middle band, anchored by a faint floor shadow.
-- Below illustration: short one-line subhead in muted slate gray, centered.
+- Below illustration: short one-line subhead in muted slate gray, centered, ≤14 words.
 - Bottom-right corner: small "OpenCraft" wordmark in deep navy.
 
 VISUAL TOPIC: {topic}
@@ -157,17 +171,18 @@ def build_pillars_prompt(slide: dict) -> str:
     return f"""\
 A clean, fully-designed pillars slide for an OpenCraft pitch deck. Aspect ratio 16:9.
 
-LAYOUT (centered):
+LAYOUT (centered, billboard-scale typography):
 - Thin electric-blue accent bar across the very top.
-- Top-center: bold dark-navy title in editorial sans-serif, centered. Optional muted \
-slate gray subtitle directly below, centered.
+- Top-center: HUGE bold dark-navy title in editorial sans-serif, centered, ≈60–80pt \
+visual weight (the dominant text element). Optional short muted-slate subtitle directly \
+below, ≤14 words, one line.
 - Middle: {len(pillars)} pillars arranged horizontally as equal-width columns, centered \
 on the slide. Each pillar is rendered as a soft 3D form (a rounded podium, a floating \
 glossy sphere, a stacked rounded prism — choose whichever reads most premium). One pillar \
 carries the single teal-green accent; the others are blue-gradient. Each pillar shows: a \
-floating numbered marker in electric blue ABOVE the 3D form, the bold pillar title in \
-dark navy directly below the form, and a 2–3 line body paragraph in muted slate beneath \
-the title.
+floating numbered marker in electric blue ABOVE the 3D form, the short bold pillar title \
+in dark navy directly below the form (1–3 words), and a short 1–2 line body in muted \
+slate beneath the title (≤10 words).
 - Bottom-right corner: small "OpenCraft" wordmark in deep navy.
 - Subtle floor shadow under each pillar to ground the 3D forms.
 
@@ -206,16 +221,16 @@ def build_feature_prompt(slide: dict) -> str:
     return f"""\
 A clean, fully-designed feature slide for an OpenCraft pitch deck. Aspect ratio 16:9.
 
-LAYOUT (centered):
+LAYOUT (centered, billboard-scale typography):
 - Thin electric-blue accent bar across the very top.
-- Top-center: small uppercase eyebrow in electric blue (if present), then bold dark-navy \
-title in editorial sans-serif, centered. Short italic muted-slate lead one line below the \
-title, centered.
+- Top-center: small uppercase eyebrow in electric blue (if present), then HUGE bold \
+dark-navy title in editorial sans-serif, centered, ≈60–80pt visual weight (the dominant \
+text element). Short italic muted-slate lead one line below the title, ≤14 words.
 - Center-stage: a soft 3D hero illustration of the feature (NOT a UI mockup — keep it \
 abstract and conceptual, see VISUAL below). Centered horizontally.
-- Below illustration: bulleted feature list rendered as dark-navy body text with small \
-electric-blue square bullets. Bullets are centered as a block (left-aligned within the \
-block).
+- Below illustration: bulleted feature list (≤4 bullets, each ≤8 words) rendered as \
+dark-navy body text with small electric-blue square bullets. Bullets centered as a block \
+(left-aligned within the block). KEEP each bullet short — no paragraphs.
 - Bottom-left: two compact price lines — "Harga Pembangunan: <value>" and "Maintenance / \
 Bulan: <value>". Values in bold dark navy, labels in muted slate.
 - Bottom-right corner: small "OpenCraft" wordmark in deep navy.
@@ -259,17 +274,18 @@ def build_stats_prompt(slide: dict) -> str:
     return f"""\
 A clean, fully-designed stats slide for an OpenCraft pitch deck. Aspect ratio 16:9.
 
-LAYOUT (centered):
+LAYOUT (centered, billboard-scale typography):
 - Thin electric-blue accent bar across the very top.
-- Top-center: optional electric-blue eyebrow + bold dark-navy title + muted-slate \
-subtitle, all centered.
+- Top-center: optional electric-blue eyebrow + HUGE bold dark-navy title (≈54–72pt \
+visual weight) + short muted-slate subtitle ≤14 words, all centered.
 - Middle: {len(stats)} stat tiles arranged in a clean row, horizontally centered. Each \
 tile is a soft 3D rounded card (electric-blue gradient face, subtle floor shadow, slight \
-inner highlight). The HUGE stat value floats above the tile in dark navy editorial bold; \
-the label sits inside the tile in dark navy bold; the caption sits in muted slate below \
-the label. ONE tile (the most important) gets a teal-green accent — gradient top edge or \
-glowing rim.
-- Below the tiles: italic teal-green takeaway line, centered.
+inner highlight). The MASSIVE stat value floats above the tile in dark navy editorial \
+bold — this is the visual anchor of the slide, render it BILLBOARD-large. Short label \
+≤4 words sits inside the tile in dark navy bold; optional caption ≤7 words in muted \
+slate below the label. ONE tile (the most important) gets a teal-green accent — gradient \
+top edge or glowing rim.
+- Below the tiles: short italic teal-green takeaway line, centered, ≤12 words.
 - Bottom-right corner: small "OpenCraft" wordmark in deep navy.
 
 STATS:
@@ -324,15 +340,15 @@ def build_chart_prompt(slide: dict) -> str:
     return f"""\
 A clean, fully-designed chart slide for an OpenCraft pitch deck. Aspect ratio 16:9.
 
-LAYOUT (centered):
+LAYOUT (centered, billboard-scale typography):
 - Thin electric-blue accent bar across the very top.
-- Top-center: optional electric-blue eyebrow + bold dark-navy title + muted-slate \
-subtitle, all centered.
+- Top-center: optional electric-blue eyebrow + HUGE bold dark-navy title (≈54–72pt \
+visual weight) + short muted-slate subtitle ≤14 words, all centered.
 - Middle: a soft 3D {chart_type} chart rendered as illustration (NOT a screenshot of \
 Excel or Tableau). {chart_visual} Category labels under bars / around the donut in dark \
-navy. Value labels on/near each data point in dark navy. Axis line in muted slate (bar \
-chart only).
-- Below chart: italic teal-green takeaway line, centered.
+navy, short and readable. Value labels on/near each data point in dark navy. Axis line \
+in muted slate (bar chart only). Avoid clutter — render only the data and its labels.
+- Below chart: short italic teal-green takeaway line, centered, ≤12 words.
 - Bottom-right corner: small "OpenCraft" wordmark in deep navy.
 
 CHART DATA:
@@ -372,16 +388,18 @@ def build_roadmap_prompt(slide: dict) -> str:
     return f"""\
 A clean, fully-designed roadmap slide for an OpenCraft pitch deck. Aspect ratio 16:9.
 
-LAYOUT (centered):
+LAYOUT (centered, billboard-scale typography):
 - Thin electric-blue accent bar across the very top.
-- Top-center: bold dark-navy title + muted-slate subtitle, centered.
+- Top-center: HUGE bold dark-navy title (≈54–72pt visual weight) + short muted-slate \
+subtitle ≤14 words, centered.
 - Middle: a horizontal 3D timeline of {len(phases)} phase cards arranged left-to-right, \
 horizontally centered on the slide. Each card is a soft 3D rounded block (electric-blue \
 gradient face, subtle floor shadow). The cards are connected by a smooth curved 3D path \
 in electric blue with small glowing milestone nodes at each junction — ONE node in \
 teal-green (the most important milestone). Each card shows: phase + timing label in \
-small caps electric blue at the top of the card, phase title in bold dark navy, a short \
-deliverables list in muted slate, and the phase price in bold dark navy at the bottom.
+small caps electric blue at the top of the card, short phase title in bold dark navy \
+(1–3 words), a SHORT deliverables list in muted slate (max 3 items, each ≤6 words), and \
+the phase price in bold dark navy at the bottom.
 - Bottom-right corner: small "OpenCraft" wordmark in deep navy.
 
 PHASES:
