@@ -14,6 +14,7 @@ import path from "node:path";
 
 import { SPHDocument } from "../templates/sph";
 import { MoUDocument } from "../templates/mou";
+import { reportDocument, type DocType } from "./monitor";
 
 const [type, dataPath, outputPath] = process.argv.slice(2);
 
@@ -39,7 +40,20 @@ switch (type) {
 }
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+const t0 = performance.now();
 await renderToFile(element, outputPath);
+const durationMs = Math.round(performance.now() - t0);
 
 const size = fs.statSync(outputPath).size;
 console.log(`OK  ${outputPath}  (${(size / 1024).toFixed(1)} KB)`);
+
+// After the document is done: upload to S3 + report to Supabase (centralize-apps).
+// No-ops when monitoring env is unset; never throws.
+await reportDocument({
+  type: type as DocType,
+  dataPath,
+  outputPath,
+  format: "pdf",
+  status: "generated",
+  durationMs,
+});

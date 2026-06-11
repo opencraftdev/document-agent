@@ -203,6 +203,31 @@ To change company info globally, edit this file. Next render picks up the change
 - `bun scripts/render.tsx <sph|mou> <data.json> <output.pdf>` — render PDF via react-pdf.
 - `bun scripts/render-ppt.ts <data.json> <output.pptx>` — render PowerPoint deck via pptxgenjs (cover + content + closing slides, brand-styled).
 - `python3 scripts/polish-deck.py <data.json> --out <polished.json>` — polish a deck by generating slide images in parallel via fal.ai gpt-image-2 (requires `FAL_KEY` in `.env`). Always run AFTER explicit user confirmation — image generation costs money.
+- `bun scripts/monitor.ts <sph|mou|deck> <data.json> <file> [generated|failed]` — manually report a document to the monitoring stack (normally automatic; see below).
+
+## Monitoring (automatic — no action needed)
+
+Every successful render is reported to the OpenCraft monitoring dashboard
+(`opencraft-centralized`, Supabase project **centralize-apps**) by
+[scripts/monitor.ts](scripts/monitor.ts), which the render scripts call
+automatically after writing the file:
+
+1. Uploads the rendered file to **S3** (`AWS_S3_BUCKET`, default bucket
+   `opencraft-video`, key `document-agent/<type>/<flat-number>.<ext>`).
+2. Writes a run + an `agent_documents` history row + a `documents_generated`
+   metric to Supabase, keyed by the doc number (decks key by file slug).
+
+Rules:
+- **It never blocks or fails a render** — telemetry errors are logged and
+  swallowed. If `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` are unset (e.g.
+  `.env` not configured), reporting is silently skipped.
+- **Deck drafts are not reported** — only final decks (filenames without
+  `draft`) appear in the history, so the dashboard shows delivered work.
+- Config lives in `.env` (see `.env.example`): `SUPABASE_URL`,
+  `SUPABASE_SERVICE_ROLE_KEY`, `AWS_*`. Never commit these.
+
+You don't need to run anything extra — render as usual and the document shows
+up on the dashboard's Document Agent page.
 
 ## Layout rules for templates (always follow when editing `.tsx`)
 

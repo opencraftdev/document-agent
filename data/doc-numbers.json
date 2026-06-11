@@ -1,5 +1,13 @@
 {
-  "sph": [],
+  "sph": [
+    {
+      "number": "001/SPH-OC/2026",
+      "date": "2026-05-30",
+      "client": "PT Nusantara Digital Solusi",
+      "subject": "Penawaran Harga Jasa AI Workflow Automation & Knowledge Base",
+      "pdf": "documents/sph/001_SPH-OC_2026.pdf"
+    }
+  ],
   "proposal": [],
   "mou": [
     {
